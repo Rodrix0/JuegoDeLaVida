@@ -7,47 +7,83 @@ import org.junit.jupiter.api.Test;
 class JuegoDeLaVidaTest {
 
 	@Test
-	public void una_cedula_viva() {
-		JuegoDeLaVida juego=new JuegoDeLaVida();
-		juego.setC1(1);
-		juego.setC2(0);
-		juego.setC3(0);
-		juego.setC4(1);
-		juego.setC5(1);
-		juego.setC6(0);
-		juego.setC7(0);
-		juego.setC8(0);
-		juego.setC9(1);
-		
-		assertEquals(3,juego.setC1(0));
-		
-		
+	public void test_cedula_vivas() {
+		JuegoDeLaVida juego=new JuegoDeLaVida(1,0,0,0,1,0,0,0,1);
+		assertEquals(1,juego.c1);
+		assertEquals(1,juego.c5);//verificar que vive
+		assertEquals(1,juego.c9);
+		juego.siguienteVecino();
+		assertEquals(0,juego.c1);
+		assertEquals(1,juego.c5);
+		assertEquals(0,juego.c9);
+
+
+
 	}
 	@Test
-	public void una_cedula_viva_next_Turn() {
-		JuegoDeLaVida juego=new JuegoDeLaVida();
-		juego.setC1(1);
-		juego.setC2(0);
-		juego.setC3(0);
-		juego.setC4(1);
-		juego.setC5(1);
-		juego.setC6(0);
-		juego.setC7(0);
-		juego.setC8(0);
-		juego.setC9(1);
-		
-		assertEquals(6,juego.setC1(0));
-		
-		
-	}
-	@Test
-	public void automatico_vida() {
-		JuegoDeLaVida juego=new JuegoDeLaVida();
-		juego.
-		
-		
-	}
+	public void next_turno() {
+		JuegoDeLaVida juego=new JuegoDeLaVida(0,0,0,0,1,0,0,0,0);
+		assertEquals(1,juego.c5);//verificar que vive
+		juego.siguienteVecino();
+		assertEquals(0,juego.c5);
 	
+	}
+	@Test
+	 void test_cedula_viva_con_dos_vecinos_vivos() {
+		JuegoDeLaVida juego=new JuegoDeLaVida(0, 0, 0, 0, 0, 0, 0, 0, 0);
+		int resultado=juego.siguiente(1, 2);
+		assertEquals(1,resultado);
+		
+
+	}
+	@Test
+	 void test_cedula_viva_con_tres_vecinos_vivos() {
+		JuegoDeLaVida juego=new JuegoDeLaVida(0, 0, 0, 0, 0, 0, 0, 0, 0);
+		int resultado=juego.siguiente(1, 3);
+		assertEquals(1,resultado);
+		
+
+	}
+	@Test
+	 void test_cedula_con_menos_de_dos_vecinos_vivos() {
+		JuegoDeLaVida juego=new JuegoDeLaVida(0, 0, 0, 0, 0, 0, 0, 0, 0);
+		int resultado=juego.siguiente(1, 1);
+		assertEquals(0,resultado);
+		
+
+	}
+	@Test
+	 void test_cedula_viva_con_mas_tres_vecinos_vivos() {
+		JuegoDeLaVida juego=new JuegoDeLaVida(0, 0, 0, 0, 0, 0, 0, 0, 0);
+		int resultado=juego.siguiente(1, 4);
+		assertEquals(0,resultado);
+		
+
+	}
+	@Test
+	 void test_cedula_muerta_con_tres_vecinos_vivos() {
+		JuegoDeLaVida juego=new JuegoDeLaVida(0, 0, 0, 0, 0, 0, 0, 0, 0);
+		int resultado=juego.siguiente(0, 3);
+		assertEquals(1,resultado);
+		
+
+	}
+	@Test
+	 void test_cedula_muerta_con_menos_tres_vecinos_vivos() {
+		JuegoDeLaVida juego=new JuegoDeLaVida(0, 0, 0, 0, 0, 0, 0, 0, 0);
+		int resultado=juego.siguiente(0, 2);
+		assertEquals(0,resultado);
+		
+
+	}
+	@Test
+	 void test_cedula_muerta_con_mas_tres_vecinos_vivos() {
+		JuegoDeLaVida juego=new JuegoDeLaVida(0, 0, 0, 0, 0, 0, 0, 0, 0);
+		int resultado=juego.siguiente(0, 4);
+		assertEquals(0,resultado);
+		
+
+	}
 	
 
 }
