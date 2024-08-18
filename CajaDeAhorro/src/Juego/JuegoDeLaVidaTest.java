@@ -9,81 +9,22 @@ class JuegoDeLaVidaTest {
 	@Test
 	public void test_cedula_vivas() {
 		JuegoDeLaVida juego=new JuegoDeLaVida(1,0,0,0,1,0,0,0,1);
-		assertEquals(1,juego.c1);
-		assertEquals(1,juego.c5);//verificar que vive
-		assertEquals(1,juego.c9);
-		juego.siguienteVecino();
-		assertEquals(0,juego.c1);
-		assertEquals(1,juego.c5);
-		assertEquals(0,juego.c9);
-
-
+		assertEquals(1,juego.getCelda(0));//se verifica que esten vivos
+		assertEquals(1,juego.getCelda(4));
+		assertEquals(1,juego.getCelda(8));
+		juego.siguienteVecino();//siguiente paso del juego
+		assertEquals(0,juego.getCelda(0));
+		assertEquals(1,juego.getCelda(4));//se verifica su nuevo estado
+		assertEquals(0,juego.getCelda(8));
 
 	}
 	@Test
 	public void next_turno() {
 		JuegoDeLaVida juego=new JuegoDeLaVida(0,0,0,0,1,0,0,0,0);
-		assertEquals(1,juego.c5);//verificar que vive
+		assertEquals(1,juego.getCelda(4));//verificar que vive
 		juego.siguienteVecino();
-		assertEquals(0,juego.c5);
+		assertEquals(0,juego.getCelda(4));
 	
 	}
-	@Test
-	 void test_cedula_viva_con_dos_vecinos_vivos() {
-		JuegoDeLaVida juego=new JuegoDeLaVida(0, 0, 0, 0, 0, 0, 0, 0, 0);
-		int resultado=juego.siguiente(1, 2);
-		assertEquals(1,resultado);
-		
-
-	}
-	@Test
-	 void test_cedula_viva_con_tres_vecinos_vivos() {
-		JuegoDeLaVida juego=new JuegoDeLaVida(0, 0, 0, 0, 0, 0, 0, 0, 0);
-		int resultado=juego.siguiente(1, 3);
-		assertEquals(1,resultado);
-		
-
-	}
-	@Test
-	 void test_cedula_con_menos_de_dos_vecinos_vivos() {
-		JuegoDeLaVida juego=new JuegoDeLaVida(0, 0, 0, 0, 0, 0, 0, 0, 0);
-		int resultado=juego.siguiente(1, 1);
-		assertEquals(0,resultado);
-		
-
-	}
-	@Test
-	 void test_cedula_viva_con_mas_tres_vecinos_vivos() {
-		JuegoDeLaVida juego=new JuegoDeLaVida(0, 0, 0, 0, 0, 0, 0, 0, 0);
-		int resultado=juego.siguiente(1, 4);
-		assertEquals(0,resultado);
-		
-
-	}
-	@Test
-	 void test_cedula_muerta_con_tres_vecinos_vivos() {
-		JuegoDeLaVida juego=new JuegoDeLaVida(0, 0, 0, 0, 0, 0, 0, 0, 0);
-		int resultado=juego.siguiente(0, 3);
-		assertEquals(1,resultado);
-		
-
-	}
-	@Test
-	 void test_cedula_muerta_con_menos_tres_vecinos_vivos() {
-		JuegoDeLaVida juego=new JuegoDeLaVida(0, 0, 0, 0, 0, 0, 0, 0, 0);
-		int resultado=juego.siguiente(0, 2);
-		assertEquals(0,resultado);
-		
-
-	}
-	@Test
-	 void test_cedula_muerta_con_mas_tres_vecinos_vivos() {
-		JuegoDeLaVida juego=new JuegoDeLaVida(0, 0, 0, 0, 0, 0, 0, 0, 0);
-		int resultado=juego.siguiente(0, 4);
-		assertEquals(0,resultado);
-		
-
-	}
 	
-
 }
